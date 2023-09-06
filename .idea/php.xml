@@ -69,6 +69,7 @@
       <path value="$PROJECT_DIR$/services/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/services/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/services/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
