@@ -36,7 +36,7 @@ class MailSender
             ->subject('Verification code')
             ->text("$code");
 
-        $transport = Transport::fromDsn('gmail+smtp://gritsatsuev.pavel@gmail.com:fqfoklprbejuidhg@default');
+        $transport = Transport::fromDsn('gmail+smtp://gritsatsuev.pavel@gmail.com:pqwuodumyqkebttc@default');
 
         $mailer = new Mailer($transport);
 
