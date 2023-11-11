@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
     ports:
-      - 80:80
+      - 8888:80
     volumes:
       - .:/var/www/app
     networks:
@@ -32,7 +32,7 @@ services:
       context: .
       dockerfile: docker/db/Dockerfile
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production
