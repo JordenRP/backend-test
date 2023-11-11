@@ -1,3 +1,9 @@
+networks:
+  app_net:
+    ipam:
+      config:
+        - subnet: 198.20.0.0/16
+
 services:
   php:
     build:
@@ -5,6 +11,9 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/var/www/app
+    networks:
+      app_net:
+        ipv4_address: 198.20.0.10
 
   nginx:
     build:
@@ -14,19 +23,26 @@ services:
       - 80:80
     volumes:
       - .:/var/www/app
+    networks:
+      app_net:
+        ipv4_address: 198.20.0.20
 
-  postgres:
+  database:
     build:
       context: .
       dockerfile: docker/db/Dockerfile
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: app
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_USER: dev
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
     volumes:
       - db-data:/var/lib/postgresql/data:rw
+    networks:
+      app_net:
+        ipv4_address: 198.20.0.30
 
 volumes:
   db-data:
