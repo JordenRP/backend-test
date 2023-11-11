@@ -3,6 +3,7 @@ FROM php:8.1.0-fpm-alpine
 WORKDIR /var/www/app
 
 COPY --chown=www-data:www-data docker/php/config/15-xdebug.ini $PHP_INI_DIR/conf.d
+COPY . /var/www/app
 RUN apk add --no-cache bash git
 
 RUN chown -R www-data:www-data .
