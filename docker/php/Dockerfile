@@ -15,9 +15,10 @@ RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
 
 ARG PUID=1000
 ARG PGID=1000
-RUN apk --no-cache add shadow && \
-    groupmod -o -g ${PGID} www-data && \
-    usermod -o -u ${PUID} -g www-data www-data
+RUN apk add --no-cache --virtual .mysql-deps mariadb-dev; \
+    docker-php-ext-install -j$(nproc) pdo_mysql; \
+    apk add --no-cache --virtual .mysql-rundeps so:libmysqlclient.so.21; \
+    apk del .mysql-deps \
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
