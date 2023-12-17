@@ -27,6 +27,8 @@ services:
       - 80:80
     volumes:
       - .:/var/www/app
+    depends_on:
+      - php
     networks:
       app_net:
         ipv4_address: 198.20.0.20
