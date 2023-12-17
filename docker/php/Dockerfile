@@ -31,6 +31,13 @@ RUN apk add symfony-cli
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+RUN composer i \
+        --prefer-dist \
+        --no-scripts \
+        --optimize-autoloader -o \
+        --ignore-platform-reqs \
+        --no-interaction
+
 USER www-data
 
 CMD ["php-fpm"]
