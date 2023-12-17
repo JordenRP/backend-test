@@ -18,7 +18,7 @@ services:
     networks:
       app_net:
         ipv4_address: 198.20.0.10
-    command: ["/bin/sh", "-c", "composer install && bin/console d:m:m --no-interaction && php-fpm"]
+    command: ["/bin/sh", "-c", "composer install && php-fpm"]
 
   nginx:
     build:
